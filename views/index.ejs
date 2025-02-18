@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <div class="f-container">
+        <% if (datas){%>
+            <% datas.forEach(data =>{ %>
+                <div class="container">
+                    <h3><%= data.title%></h3>
+                    <p><%= data.author%></p>
+                    <small><%= data.year%></small>
+                </div>
+            <% }) %>
+        <% } %>
+    </div>
+</body>
+</html>
