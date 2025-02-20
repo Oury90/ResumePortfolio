@@ -1,4 +1,4 @@
-import express from 'express';
+import express, { response } from 'express';
 import bodyParser from 'body-parser';
 import axios from 'axios';
 
@@ -11,6 +11,7 @@ app.use(bodyParser.urlencoded({extended: true}))
 app.set(express.json())
 app.use(express.static("public"))
 
+// get all post 
 app.get("/", async(req, res) =>{
     try {
         const response = await axios.get(`${url}/book`)
@@ -25,6 +26,18 @@ app.get("/", async(req, res) =>{
         // Send an error response to the client
         res.status(500).send('Something went wrong!');
     }
+})
+app.get("/form", (req, res) =>{
+    res.render("form.ejs", {
+        title: "Post"
+    })
+})
+
+// posted a new post 
+app.post("/post", async(req, res) =>{
+    const response = await axios.post(`${url}/post`, req.body);
+    console.log(response.data)
+    res.redirect("/")
 })
 
 

@@ -63,15 +63,16 @@ app.get("/book", (req, res) =>{
 })
 
 // post a new books 
-app.post("/post", (req, res) =>{
-    const newId = numBook +1
-    const newPost = {
-        id: newId,
-        title: req.body.title,
-        author: req.body.author,
-        year: req.body.year
-    }
-    numBook = newId;
+app.post("/post", async(req, res) =>{
+    const datas = await condb.query("INSERT INTO infos (Title, Author, Year) SELECT column1, column2, column3, ... FROM table1 WHERE condition;");
+    // const newId = numBook +1
+    // const newPost = {
+    //     // id: newId,
+    //     title: req.body.title,
+    //     author: req.body.author,
+    //     year: req.body.year
+    // }
+    // numBook = newId;
     books.push(newPost);
     res.json(books)
 })
